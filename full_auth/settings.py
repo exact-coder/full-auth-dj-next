@@ -150,4 +150,4 @@ DJOSER = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# length is 00.25min
+AUTH_USER_MODEL = 'users.UserAccount'
