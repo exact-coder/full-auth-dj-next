@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Thard Party app
+    # Thard Party apps
     'rest_framework',
     'djoser',
     'corsheaders',
@@ -88,7 +88,19 @@ DATABASES = {
 }
 
 
-# Email Settings
+
+# Email Configuration
+
+EMAIL_BACKEND ="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER = getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = getenv('EMAIL_PASS')
+EMAIL_USE_TLS = True
+
+
+# Email Settings With AWS
+
 # EMAIL_BACKEND = 'django_ses.SESBackend'
 # DEFAULT_FROM_EMAIL = getenv('AWS_SES_FROM_EMAIL')
 
