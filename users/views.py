@@ -108,4 +108,4 @@ class LogoutView(APIView):
         return response
 
 
-# length is 2.15min
+# length is 2.28min
