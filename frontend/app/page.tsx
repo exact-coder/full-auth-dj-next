@@ -9,4 +9,4 @@ export default function Page() {
   );
 }
 
-// length is 00.20min
+// length is 00.40min
