@@ -114,6 +114,8 @@ EMAIL_USE_TLS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+DOMAIN = getenv('DOMAIN')
+SITE_NAME = 'Full Auth'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Provider from '@/redux/provider';
+import { Setup } from "@/components/utils";
 
 const monserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${monserrat.className} bg-black text-white`}>
         <Provider>
+          <Setup/>
           <Navbar />
           <div>{children}</div>
           <Footer />

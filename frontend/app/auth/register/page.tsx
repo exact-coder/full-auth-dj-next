@@ -4,9 +4,16 @@ import logo from '@/app/logo.png'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRegisterMutation } from '@/redux/features/authApiSlice';
+import {toast} from 'react-toastify';
+import { useRouter } from 'next/navigation';
+import Spinner from '@/components/common/Spinner';
+
+
 
 export default function Page() {
+  const router = useRouter()
   const [register,{isLoading}] = useRegisterMutation();
+  
 
   const [formData, setFormData] = useState({first_name:"",last_name:'',email:"",password:'',re_password:""})
 
@@ -23,9 +30,10 @@ export default function Page() {
     register({first_name,last_name,email,password,re_password})
     .unwrap()
     .then(() => {
-
+      toast.success("Please check your email to Verify Account");
+      router.push("/auth/login")
     }).catch(()=> {
-      
+      toast.error("Failed to Register your account")
     })
   }
 
@@ -144,7 +152,7 @@ export default function Page() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign Up
+                {isLoading ? <Spinner sm/>:"Sign Up" }
               </button>
             </div>
           </form>
