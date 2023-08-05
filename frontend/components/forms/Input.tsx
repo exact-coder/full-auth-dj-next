@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { ChangeEvent } from "react";
 
 interface Props {
@@ -8,6 +9,10 @@ interface Props {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
   required?: boolean;
+  link?: {
+    linkText: string;
+    linkUrl: string;
+  }
 }
 
 export default function Input({
@@ -18,15 +23,23 @@ export default function Input({
   value,
   required = false,
   placeHolder,
+  link,
 }: Props) {
   return (
     <div>
-      <label
-        htmlFor={labelId}
-        className="block text-sm font-medium leading-6 text-white"
-      >
-        {children}
-      </label>
+      <div className="flex justify-between align-center">
+        <label
+          htmlFor={labelId}
+          className="block text-sm font-medium leading-6 text-white"
+        >
+          {children}
+        </label>
+        {link && (
+          <div className="text-sm">
+            <Link className="font-semibold text-indigo-600 hover:text-indigo-500" href={link.linkUrl} >{link.linkText}</Link>
+          </div>
+        )}
+      </div>
       <div className="mt-2">
         <input
           id={labelId}
