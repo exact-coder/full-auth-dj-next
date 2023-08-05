@@ -1,7 +1,7 @@
-'use client';
 import logo from '@/app/logo.png'
 import Image from 'next/image';
 import Link from 'next/link';
+import { RegisterForm } from '@/components/forms';
 
 
 
@@ -18,7 +18,7 @@ export default function Page() {
         </div>
       
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          
+          <RegisterForm/>
 
           <p className="mt-10 text-center text-sm text-white">
             Already have an account?{' '}
