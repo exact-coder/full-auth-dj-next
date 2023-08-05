@@ -1,11 +1,16 @@
 "use client";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BellIcon, XMarkIcon,ArrowRightOnRectangleIcon,ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Fragment } from "react";
 import logo from "@/app/logo.png";
 import avator from "@/app/avator.png";
 import Link from "next/link";
+import {Tooltip} from "react-tooltip";
+import { useAppSelector,useAppDispatch } from "@/redux/hooks";
+import { logout as setLogout } from "@/redux/features/authSlice";
+import { useLogoutMutation } from "@/redux/features/authApiSlice";
+import { useRouter } from "next/navigation";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -19,6 +24,28 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const router = useRouter();
+    const dispatch = useAppDispatch();
+    const [ logout ] = useLogoutMutation();
+
+    const { isAuthenticated } = useAppSelector(state => state.auth);
+
+    const handleLogout = () => {
+        logout(undefined)
+        .unwrap()
+        .then(() => {
+            dispatch(setLogout());
+        }).finally(() => {
+            router.push("/")
+        })
+    }
+
+    const authLinks =(
+        <div className="">AUTH LINKS</div>
+    )
+    const guestLinks =(
+        <div className="">GUEST LINKS</div>
+    )
   return (
     <nav className="">
       <Disclosure as="nav" className="bg-gray-800">
@@ -65,13 +92,31 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    
+
+                    {isAuthenticated ? authLinks :guestLinks}
+                    
+                <button
+                    type="button" data-tooltip-id="Login" data-tooltip-content="Login"
+                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:text-white"
+                  >
+                    <span className="absolute -inset-1.5" />
+                    <span className="sr-only">View Login</span>
+                    <ArrowRightOnRectangleIcon className="h-6 w-6" aria-hidden="true" />
+                    <Tooltip id="Login" place="bottom"/>
+                </button>
+
+
+
                   <button
                     type="button"
-                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    data-tooltip-id="notifications" data-tooltip-content="Notifications"
+                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:text-white"
                   >
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    <Tooltip id="notifications" place="bottom"/>
                   </button>
 
                   {/* Profile dropdown */}
