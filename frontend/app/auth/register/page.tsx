@@ -2,7 +2,12 @@ import logo from '@/app/logo.png'
 import Image from 'next/image';
 import Link from 'next/link';
 import { RegisterForm } from '@/components/forms';
+import { Metadata } from 'next';
 
+export const metadata: Metadata ={
+  title: 'Full Auth || Register',
+  description: 'Full Auth register page',
+}
 
 
 export default function Page() {

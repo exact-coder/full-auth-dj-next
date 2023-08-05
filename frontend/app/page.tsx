@@ -1,5 +1,10 @@
 
+import { Metadata } from 'next';
 
+export const metadata: Metadata ={
+  title: 'Full Auth || Home',
+  description: 'Full Auth Home page',
+}
 
 export default function Page() {
   return (
@@ -9,4 +14,4 @@ export default function Page() {
   );
 }
 
-// length is 1.52min
+// length is 2.08min
