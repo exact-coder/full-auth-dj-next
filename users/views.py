@@ -95,9 +95,8 @@ class CustomTokenVerifyView(TokenVerifyView):
 
         if access_token:
             request.data['token'] = access_token
-        
-        return super().post(request, *args, **kwargs)
 
+        return super().post(request, *args, **kwargs)
 
 class LogoutView(APIView):
     def post(self, request, *args, **kwargs):

@@ -1,10 +1,10 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+"use client";
 
-import React from 'react'
+import { useVerify } from "@/hooks";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Setup() {
-  return (
-    <ToastContainer />
-  )
+  useVerify();
+  return <ToastContainer />;
 }
