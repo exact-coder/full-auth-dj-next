@@ -5,6 +5,7 @@
 __pycache__
 db.sqlite3
 media
+.env.local
 
 # Backup files # 
 *.bak 
@@ -109,7 +110,7 @@ venv.bak/
 
 # mkdocs documentation 
 /site 
-
+/.env.local/
 # mypy 
 .mypy_cache/ 
 
@@ -137,3 +138,5 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+*.env.local
